@@ -11,26 +11,26 @@ async function handlerOrderListAll(req, res) {
             case "GET":
 
                 try {
-                    const { id } = req.userLogged
+                    // const { id } = req.userLogged
 
-                    const { searchQuery, status } = req.query
+                    const { orderStatus } = req.query
 
-                    // const where = {
-                    //     userId: id
-                    // }
-
-                    // if (searchQuery) {
-                    //     where.invoice_number = searchQuery
-                    // }
+                    const where = {}
 
 
-                    // if (status !== "All") {
 
-                    //     where.status = status
-                    // }
+                    if (orderStatus) {
+                        where.status = orderStatus
+                    }
 
+                    const take = +req.query.perPage || 6
+                    const page = +req.query.currentPage || 1
+                    const skip = (page - 1) * take
 
                     const order = await prisma.order.findMany({
+                        where,
+                        take,
+                        skip,
                         include: {
                             user: true
                         },
@@ -40,10 +40,19 @@ async function handlerOrderListAll(req, res) {
 
                     })
 
-                    return res.status(200).json({ data: order })
+                    const totalOrder = await prisma.order.count({
+                        where
+                    })
+
+                    return res.status(200).json({
+                        data: order,
+                        totalOrder
+
+                    })
                 } catch (error) {
 
-                    return res.status(400).json({ message: 'something wrong' })
+                    return res.status(400).json({ message: "Something went wrong" })
+
                 }
                 break;
 
@@ -58,7 +67,7 @@ async function handlerOrderListAll(req, res) {
 }
 
 const handlerRoute = nc()
-    .get(authentication, authorization(['Admin']), handlerOrderListAll)
+    .get(handlerOrderListAll)
 
 
 export default handlerRoute

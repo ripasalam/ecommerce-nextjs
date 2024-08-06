@@ -57,26 +57,26 @@ const Header = ({ isAdd, isEdit, setIsAdd, setIsEdit }) => {
 
 
     return (
-        <div className='flex flex-col bg-white py-5 top-0 sticky'>
+        <div className='flex flex-col bg-white py-5 top-0 sticky z-50'>
             <div className='w-full'>
-                <div className='grid grid-cols-12 items-center'>
-                    <div className='col-start-1'>
-                        <Link href={'/'}>
-                            <Logo />
-                        </Link>
+                <div className='flex justify-between items-center justify-center'>
+                    <div className='flex items-center'>
+                        <div className=' mr-2 '>
+                            <Link href={'/'}>
+                                <Logo />
+                            </Link>
 
-                    </div>
-                    <div className='col-start-4 col-end-8 flex items-center'>
-                        <SearchSection />
-                        {/* <Link href={'/'}>
+                        </div>
+                        <div className='col-start-5 col-end-8 flex items-center'>
+                            <SearchSection />
+                            {/* <Link href={'/'}>
                             <h1 className='font-bold text-regal-blue'>Popular Products</h1>
 
                         </Link> */}
-
+                        </div>
 
                     </div>
-
-                    <div className='col-start-9 col-span-4 flex justify-end gap-5'>
+                    <div className=' flex items-center gap-2 '>
                         {isLogin ? (
                             <Menu as="div" className="relative ml-3">
                                 <div>
@@ -96,7 +96,7 @@ const Header = ({ isAdd, isEdit, setIsAdd, setIsEdit }) => {
                                     leaveFrom="transform opacity-100 scale-100"
                                     leaveTo="transform opacity-0 scale-95"
                                 >
-                                    <Menu.Items className="absolute right-0 mt-2 w-48 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none z-50">
+                                    <Menu.Items className="absolute right-0 mt-2 w-48 origin-top-right rounded-md bg-white py-1 shadow-lg  focus:outline-none">
                                         <Menu.Item>
                                             {({ active }) => (
                                                 <Link href="/customer/account" className={classNames(active ? 'bg-gray-100' : '', 'block px-4 py-2 text-sm text-gray-700')}>
@@ -164,9 +164,10 @@ const Header = ({ isAdd, isEdit, setIsAdd, setIsEdit }) => {
                             </Menu>
                         ) :
                             (
-                                <button onClick={() => {
-                                    router.push('/login')
-                                }} className='px-5 py-2 text-white bg-blue-gray-800 rounded-lg'>Sign In</button>
+                                <Link href='/login'>
+                                    <div className='px-5 py-2 text-white bg-blue-gray-800 rounded-lg'>Sign In</div>
+                                </Link>
+
                             )
                         }
 

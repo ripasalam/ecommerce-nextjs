@@ -10,11 +10,20 @@ async function handlerOrderDetail(req, res) {
             case "GET":
 
                 try {
-                    // console.log(req.query)
+                    const { id } = req.userLogged
                     const orderId = req.query.orderId
-                    const order = await prisma.order.findUnique({
+                    const order = await prisma.order.findFirst({
                         where: {
-                            invoice_number: orderId,
+                            AND: [
+                                {
+                                    invoice_number: orderId,
+
+                                },
+                                {
+                                    userId: id
+                                }
+                            ]
+
 
                         },
                         include: {
@@ -27,7 +36,6 @@ async function handlerOrderDetail(req, res) {
                     return res.status(400).json({ message: 'something wrong' })
                 }
                 break;
-
             default:
                 res.status(400).json({ message: "Invalid request method" });
         }

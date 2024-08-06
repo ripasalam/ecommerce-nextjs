@@ -3,6 +3,8 @@ import SeeAllButton from '../button/SeeAllButton'
 import CategoryGrid from '../CategoryGrid'
 
 const CategorySection = () => {
+
+
     return (
         <div className='py-10'>
             <div className='flex justify-between items-center'>

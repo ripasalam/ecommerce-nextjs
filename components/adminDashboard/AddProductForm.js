@@ -30,6 +30,8 @@ const AddProductForm = () => {
             })
     }, []);
 
+
+
     const handleChangeInput = (event) => {
         const name = event.target.name;
         const value = event.target.value;
@@ -75,7 +77,7 @@ const AddProductForm = () => {
             }
         })
             .then((res) => {
-                console.log(res)
+
                 toast.success(res.data.message, {
                     position: 'top-right',
                     autoClose: 5000,

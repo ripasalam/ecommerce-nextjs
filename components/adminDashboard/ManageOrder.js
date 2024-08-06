@@ -30,7 +30,7 @@ const ManageOrder = () => {
 
     return (
         <div className="relative overflow-x-auto shadow-md sm:rounded-lg my-10">
-            <table className="w-full text-sm text-left  text-gray-500 dark:text-gray-400">
+            <table className="w-full text-sm text-left -z-10 text-gray-500 dark:text-gray-400">
                 <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                     <tr>
                         <th scope="col" className="p-4">
@@ -79,10 +79,10 @@ const ManageOrder = () => {
                                     {order.total_price}
                                 </td>
                                 <td className="px-6 py-4">
-                                    {order.status}
+                                    {order.transaction_status}
                                 </td>
                                 <td className="px-6 py-4">
-                                    Pending
+                                    {order.status}
                                 </td>
                                 <td className="px-6 py-4">
                                     <Link href={`manage-order/${order.invoice_number}`}>

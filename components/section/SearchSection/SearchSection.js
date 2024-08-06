@@ -44,14 +44,14 @@ const SearchSection = () => {
             <Dialog
                 className='w-full max-w-[77rem] border border-zinc-300  bg-gray-100 xl:px-0 px-2 pt-6 mt-20 shadow-md  '
                 open={open}
-                size='xl'
+                size='lg'
                 handler={handleOpen}
                 dismiss={{
                     enabled: false,
                 }}
             >
-                <DialogBody className='h-[42rem] overflow-scroll'>
-                    <div className='flex justify-between max-w-6xl'>
+                <DialogBody className='h-[20rem] overflow-scroll'>
+                    <div className='flex justify-between max-w-4xl'>
                         <div className='flex items-center text-gray-500 '>
 
                             <input

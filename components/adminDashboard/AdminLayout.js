@@ -4,10 +4,10 @@ import React from 'react'
 
 const AdminLayout = ({ children }) => {
     return (
-        <Layout>
+        <div>
             <AdminHead />
             {children}
-        </Layout>
+        </div>
 
     )
 }

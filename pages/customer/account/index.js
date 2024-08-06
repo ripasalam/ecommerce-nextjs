@@ -5,6 +5,7 @@ import React, { useState } from 'react'
 import Cookies from 'js-cookie'
 import { jwtDecode } from 'jwt-decode'
 
+
 const Profile = () => {
 
     const [isEdit, setIsEdit] = useState({
@@ -17,7 +18,7 @@ const Profile = () => {
     })
 
     const token = JSON.stringify(Cookies.get('token'))
-    const router = useRouter()
+    // const router = useRouter()
 
 
     if (token) {

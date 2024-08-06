@@ -10,8 +10,8 @@ async function handlerUpdatePayment(req, res) {
             case "PUT":
                 try {
 
-                    const { orderId, status, total_price, invoice_number, transactionId } = req.body
-                    const { id } = req.query
+                    const { orderId, status, total_price, invoice_number, transactionId, transaction_method, transaction_status } = req.body
+                    // const { id } = req.query
 
                     // console.log(req.body)
                     // console.log(id)
@@ -22,6 +22,7 @@ async function handlerUpdatePayment(req, res) {
                         }
                     })
 
+
                     if (getOrder) {
                         const updateOrder = await prisma.order.update({
                             where: {
@@ -31,6 +32,8 @@ async function handlerUpdatePayment(req, res) {
                                 status,
                                 total_price,
                                 invoice_number,
+                                payment_method: transaction_method,
+                                transaction_status,
                                 transactionId
                             }
                         })

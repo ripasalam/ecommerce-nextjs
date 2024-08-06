@@ -42,7 +42,7 @@ const CartMenu = () => {
         <div>
             <Menu placement='bottom-end'>
                 <MenuHandler>
-                    <div className='relative p-2 border rounded-md  border-gray-400 text-gray-500 hover:border-regal-blue hover:text-gray-800 ease-in duration-100 cursor-pointer'>
+                    <div className='relative p-2 border rounded-md  border-gray-400 text-gray-500  hover:text-gray-800 ease-in duration-100 cursor-pointer'>
                         <AiOutlineShopping className='text-2xl text-regal-blue' />
                         {cart.cartItems?.length > 0 && (
                             <div className='absolute -top-2 -right-3 bg-red-800 h-6 w-6 rounded-full flex justify-center items-center '>

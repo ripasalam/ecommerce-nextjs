@@ -10,7 +10,7 @@ const AdminHead = () => {
 
     return (
         <div className=''>
-            <div className='grid grid-flow-col'>
+            <div className='grid grid-flow-col z-0'>
                 <div className='flex col-start-2 items-center gap-5'>
 
                     <Link

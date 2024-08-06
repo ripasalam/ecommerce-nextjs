@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react'
 import ProductCard from './card/ProductCard'
 import axios from 'axios';
 import CategoryCard from './card/CategoryCard';
+import NotFoundText from './NotFoundText';
+
 
 const CategoryGrid = () => {
 
@@ -15,6 +17,10 @@ const CategoryGrid = () => {
                 console.log(error)
             })
     }, []);
+
+    if (!categories) {
+        return <NotFoundText>Category Not Found </NotFoundText>
+    }
 
     return (
         <div className='grid grid-cols-1 sm:grid-cols-2  gap-3'>

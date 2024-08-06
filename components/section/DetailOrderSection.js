@@ -17,60 +17,40 @@ const DetailOrderSection = () => {
 
     useEffect(() => {
 
-        if (orderId) {
 
-            axios.get(`${process.env.NEXT_PUBLIC_BASE_URL}/payment/${orderId}` < {
-                headers: { authorization: 'Bearer ' + Cookies.get('token') }
-            })
-                .then((res) => {
-                    setDetailPayment(res.data.data)
 
-                }).catch((error) => {
-                    console.log(error)
+        axios.get(`${process.env.NEXT_PUBLIC_BASE_URL}/my-order/${orderId}`, {
+            headers: { authorization: 'Bearer ' + Cookies.get('token') }
+        })
+            .then((res) => {
+
+                setOrderDetail(res.data.data)
+
+                const ids = res.data?.data?.orderItems.map((item) => item.productId)
+
+
+
+                axios.get(`${process.env.NEXT_PUBLIC_BASE_URL}/products/productOrder`, {
+                    params: {
+                        productId: ids,
+                    },
+                    paramsSerializer: { indexes: null }
                 })
+                    .then((res) => {
 
-            axios.get(`${process.env.NEXT_PUBLIC_BASE_URL}/my-order/${orderId}`, {
-                headers: { authorization: 'Bearer ' + Cookies.get('token') }
-            })
-                .then((res) => {
-                    setOrderDetail(res.data.data)
-
-                    const ids = res.data?.data?.orderItems.map((item) => item.productId)
-
-
-
-                    axios.get(`${process.env.NEXT_PUBLIC_BASE_URL}/products/productOrder`, {
-                        params: {
-                            productId: ids,
-                        },
-                        paramsSerializer: { indexes: null }
+                        setProductOrder(res.data.product)
+                    }).catch((error) => {
+                        console.log(error)
                     })
-                        .then((res) => {
 
-                            setProductOrder(res.data.product)
-                        }).catch((error) => {
-                            console.log(error)
-                        })
+            }).catch((error) => {
+                console.log(error)
+            })
 
-                }).catch((error) => {
-                    console.log(error)
-                })
-        }
 
 
     }, [orderId]);
 
-
-    const onCheckPayment = () => {
-
-
-        axios.get(`${process.env.NEXT_PUBLIC_BASE_URL}/payment/${orderId}`)
-            .then((res) => {
-                setDetailPayment(res.data.data)
-            }).catch((error) => {
-                console.log(error)
-            })
-    }
 
     const rupiah = (number) => {
         return new Intl.NumberFormat("id-ID", {
@@ -79,7 +59,8 @@ const DetailOrderSection = () => {
         }).format(number);
     }
 
-    console.log(detailPayment)
+
+
 
     return (
         <div className=' px-3 py-3 mb-3 bg-white grid grid-cols-12 gap-4 items-start '>
@@ -87,25 +68,25 @@ const DetailOrderSection = () => {
             <div className='grid col-span-8 px-4 py-3 rounded-lg rounded-2 border border-gray bg-white '>
                 <div className='border-b border-gray font-bold text-xl'>Shipping Information</div>
                 <div className='mt-3'>
-                    <h2 className='font-bold'>Payment Status</h2>
-                    <button onClick={onCheckPayment} className='text-white rounded px-3 py-1 bg-yellow-700'>Check Status Payment</button>
-                    {detailPayment !== null && (
+                    <div className=''>Status: {orderDetail.status}</div>
+                    {/* <button onClick={onCheckPayment} className='text-white rounded px-3 py-1 bg-yellow-700'>Check Status Payment</button> */}
+                    {orderDetail !== null && (
                         <>
-                            <div className="flex pt-3">
+                            {/* <div className="flex pt-3">
                                 payment type : {detailPayment?.payment_type}
-                            </div>
+                            </div> */}
                             <div className="flex">
-                                transaction time : {detailPayment?.transaction_time}
+                                {orderDetail.payment_method ? `payment method : ${orderDetail.payment_method}` : ""}
                             </div>
                             <div className="flex mt-2">
                                 transaction status :
                                 <div
-                                    className={`ml-2 font-semibold rounded-xl px-2 py-1 text-white ${detailPayment?.transaction_status === "settlement"
+                                    className={`ml-2 font-semibold rounded-xl px-2 py-1 text-white ${orderDetail?.transaction_status === "Success"
                                         ? "bg-green-500"
-                                        : "bg-blue-400"
+                                        : orderDetail?.transaction_status === "Pending" ? "bg-blue-400" : "bg-red-500"
                                         }`}
                                 >
-                                    {detailPayment?.transaction_status}
+                                    {orderDetail.transaction_status === "Success" ? "Pembayaran berhasil" : orderDetail.transaction_status === "Pending" ? "Menunggu Pembayaran" : "Pembayaran Gagal"}
                                 </div>
                             </div>
                         </>
@@ -129,17 +110,17 @@ const DetailOrderSection = () => {
             <div className='grid auto-rows-min col-span-4 px-4 py-3 rounded-lg rounded-2 border border-gray'>
                 <h3 className='border-b border-gray font-bold '>Detail Payment</h3>
                 <div className='mt-5'>
-                    <div className='flex justify-between text-sm mb-2 '>
+                    {/* <div className='flex justify-between text-sm mb-2 '>
                         <p>Subtotal</p>
-                        {/* <p>{rupiah(detailPayment.gross_amount)}</p> */}
-                    </div>
-                    <div className='flex justify-between text-sm mb-2 '>
+                        <p>{rupiah(orderDetail.total_price)}</p>
+                    </div> */}
+                    {/* <div className='flex justify-between text-sm mb-2 '>
                         <p>Shipping</p>
                         <p></p>
-                    </div>
+                    </div> */}
                     <div className='flex justify-between text-sm mb-2 font-bold '>
                         <p>Total</p>
-                        {/* <p>{rupiah(detailPayment.gross_amount)}</p> */}
+                        <p>{rupiah(orderDetail.total_price)}</p>
 
                     </div>
                 </div>

@@ -24,6 +24,8 @@ async function handlerPayment(req, res) {
                         }
                     })
 
+                    console.log(user.name)
+
                     const snap = new midtransClient.Snap({
                         isProduction: false,
                         serverKey: process.env.MIDTRANS_SERVER_KEY,
@@ -34,7 +36,7 @@ async function handlerPayment(req, res) {
                             order_id: "chtm-" + getCurrentTimestamp(),
                             gross_amount: total
                         },
-                        custommer_details: {
+                        customer_details: {
                             name: user.name
                         }
                     }

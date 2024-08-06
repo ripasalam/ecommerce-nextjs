@@ -1,5 +1,6 @@
 import AdminLayout from '@/components/adminDashboard/AdminLayout'
 import ManageOrder from '@/components/adminDashboard/ManageOrder'
+import Layout from '@/components/Layout'
 import React from 'react'
 
 
@@ -13,7 +14,9 @@ const ManageOrderPage = () => {
 }
 
 ManageOrderPage.getLayout = (page) => (
-    <AdminLayout>{page}</AdminLayout>
+    <Layout>
+        <AdminLayout>{page}</AdminLayout>
+    </Layout>
 )
 
 export default ManageOrderPage

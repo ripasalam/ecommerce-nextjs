@@ -1,5 +1,6 @@
 import AddProductForm from '@/components/adminDashboard/AddProductForm'
 import AdminLayout from '@/components/adminDashboard/AdminLayout'
+import Layout from '@/components/Layout'
 import React from 'react'
 
 
@@ -13,7 +14,10 @@ const AddProduct = () => {
 }
 
 AddProduct.getLayout = (page) => (
-    <AdminLayout>{page}</AdminLayout>
+    <Layout>
+        <AdminLayout>{page}</AdminLayout>
+    </Layout>
+
 )
 
 export default AddProduct

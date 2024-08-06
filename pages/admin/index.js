@@ -1,13 +1,22 @@
 import AdminLayout from '@/components/adminDashboard/AdminLayout'
+import Summary from '@/components/adminDashboard/Summary'
+import Layout from '@/components/Layout'
 import React from 'react'
 
 const Admin = () => {
-    return <div>Admin</div>
+    return (
+        <div>
+            <Summary />
+        </div>
+    )
 
 }
 
 Admin.getLayout = (page) => (
-    <AdminLayout>{page}</AdminLayout>
+    <Layout>
+        <AdminLayout>{page}</AdminLayout>
+    </Layout>
+
 )
 
 export default Admin

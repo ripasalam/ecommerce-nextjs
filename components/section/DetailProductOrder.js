@@ -13,35 +13,40 @@ const DetailProductOrder = ({ product, orderItem }) => {
             currency: "IDR"
         }).format(number);
     }
+
     return (
-        <div className='mt-5'>
+        <div className='p-3 border-b mb-2'>
+            <div className='grid sm:grid-cols-4 grid-cols-3'>
 
-            <div className='flex justify-between flex-row py-3 border-b'>
-                <div className='flex flex-row'>
-                    <img
-                        src={`${product.image}`}
-
-                        className="w-28 h-28  rounded-lg"
-                    />
-                    <div className='flex flex-col pl-3'>
-                        <p className='grow'>{product.name}</p>
-                        <div className='flex justify-between'>
-                            <div className='flex'>
-                                <p>{orderItem.quantity}</p>
-                                <p className='mx-2'>X</p>
-                                <p>{rupiah(orderItem.item_price)}</p>
-                            </div>
-                        </div>
-                    </div>
+                <div className=' col-start-1 col-span-1'>
+                    <Image src={product.image} alt={product.id} width={200} height={200} className='h-auto w-auto' />
                 </div>
-                <div className='flex flex-col justify-self-end'>
-                    <div className='grow'>Total Price</div>
-                    <div className=''>
-                        <p>{rupiah(orderItem.item_price * orderItem.quantity)}</p>
+                <div className='flex flex-col col-start-2 col-span-2 ml-2'>
+                    <div className='grow'>
+                        <h1 className='font-bold text-gray-800'>{product.name}</h1>
                     </div>
+                    <div className='font-bold text-red-700 flex'>
+                        <p className=''>{orderItem.quantity}</p>
+                        <p className='mx-2'>X</p>
+                        <p className='  '>{rupiah(orderItem.item_price)}</p>
+                    </div>
+
+
+                </div>
+                <div className='col-start-4 col-span-1 items-end flex flex-col'>
+                    <div className='grow'>
+                        <h1 className='font-bold text-gray-800'>total Price</h1>
+                    </div>
+                    <div>
+                        <p className=' font-bold text-red-700'>{rupiah(orderItem.quantity * orderItem.item_price)}</p>
+                    </div>
+
+                </div>
+                <div>
                 </div>
             </div>
         </div>
+
     )
 }
 

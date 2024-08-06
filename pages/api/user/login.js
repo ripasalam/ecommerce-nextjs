@@ -1,6 +1,8 @@
 import prisma from "@/utils/prisma";
 const bcrpt = require('bcrypt')
 const jwt = require('jsonwebtoken')
+
+
 export default async function handler(req, res) {
 
     try {

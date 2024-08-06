@@ -2,6 +2,7 @@ import prisma from "@/utils/prisma";
 import authentication from "@/middleware/authentication";
 import nc from "next-connect";
 
+
 async function handlerCheckoutOrder(req, res) {
 
     try {
@@ -9,7 +10,7 @@ async function handlerCheckoutOrder(req, res) {
             case "POST":
                 try {
 
-                    const { product, userId, status, paymentId } = req.body
+                    const { product, userId, status, paymentId, transaction_status } = req.body
 
 
 
@@ -17,7 +18,8 @@ async function handlerCheckoutOrder(req, res) {
                         data: {
                             userId: parseInt(userId),
                             status,
-                            paymentId
+                            paymentId,
+                            transaction_status
                         }
                     })
 

@@ -1,6 +1,9 @@
+import authentication from "@/middleware/authentication";
+import authorization from "@/middleware/authorization";
 import productUpload from "@/middleware/multerProduct";
 import prisma from "@/utils/prisma";
 import nc from "next-connect";
+
 
 async function handlerProduct(req, res) {
 
@@ -22,7 +25,7 @@ async function handlerProduct(req, res) {
                         where.name = { contains: `${search}`, mode: 'insensitive' }
                     }
 
-                    console.log(where)
+                    
 
 
                     const take = +req.query.perPage || 6
@@ -109,7 +112,7 @@ export const config = {
 
 const handlerRoute = nc()
     .get(handlerProduct)
-    .post(productUpload.single('photo'), handlerProduct)
+    .post(authentication, authorization(['Admin']), productUpload.single('photo'), handlerProduct)
 
 
 export default handlerRoute

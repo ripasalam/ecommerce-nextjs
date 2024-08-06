@@ -7,6 +7,7 @@ export default async function handler(req, res) {
             case "GET":
                 try {
                     const categories = await prisma.category.findMany()
+
                     return res.json({ categories })
                 } catch (error) {
                     console.log(error)

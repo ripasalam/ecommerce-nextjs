@@ -14,7 +14,8 @@ const CheckoutSection = () => {
     const router = useRouter();
 
 
-    const { cart } = useContext(CartContext);
+    // const { cart } = useContext(CartContext);
+    const { addItemToCart, cart, deleteItemFromCart } = useContext(CartContext);
     const userId = Cookies.get('id')
 
     const amount = cart?.cartItems?.reduce(
@@ -34,12 +35,15 @@ const CheckoutSection = () => {
         )
     }
 
+
+
     const handleProcess = async () => {
 
 
         const order = {
             product: cart?.cartItems,
             userId: userId,
+            transaction_status: "Pending"
 
         }
 
@@ -50,6 +54,7 @@ const CheckoutSection = () => {
             })
             .then((res) => {
 
+                cart.cartItems.map((item) => deleteItemFromCart(item.product))
 
                 const orderId = res.data?.order?.id
 
@@ -87,9 +92,10 @@ const CheckoutSection = () => {
 
                     const updateData = {
                         orderId: orderId,
-                        status: "Paid",
+                        status: "Processing",
                         total_price: result.gross_amount,
                         invoice_number: result.order_id,
+                        transaction_method: result.payment_type,
                         transactionId: result.transaction_id
                     }
 
@@ -100,6 +106,8 @@ const CheckoutSection = () => {
                             router.push(`/detail-order/${result.order_id}`)
                         })
                     alert("payment success!");
+                    // router.push(`/detail-order/${result.order_id}`)
+
 
 
 
@@ -107,6 +115,8 @@ const CheckoutSection = () => {
                 onPending: async function (result) {
                     /* You may add your own implementation here */
 
+                    alert("payment pending!");
+                    // router.push(`/detail-order/${result.order_id}`)
 
 
                     const updateData = {
@@ -114,6 +124,7 @@ const CheckoutSection = () => {
                         status: "Processing",
                         total_price: result.gross_amount,
                         invoice_number: result.order_id,
+                        transaction_method: result.payment_type,
                         transactionId: result.transaction_id
                     }
 
@@ -135,6 +146,7 @@ const CheckoutSection = () => {
                         status: "Failed",
                         total_price: result.gross_amount,
                         invoice_number: result.order_id,
+                        transaction_method: result.payment_type,
                         transactionId: result.transaction_id
                     }
 
@@ -151,9 +163,9 @@ const CheckoutSection = () => {
                     /* You may add your own implementation here */
                     const updateData = {
                         orderId: orderId,
-                        status: "NotPaid",
                         total_price: result.gross_amount,
                         invoice_number: result.order_id,
+                        transaction_method: result.payment_type,
                         transactionId: result.transaction_id
                     }
 
@@ -164,8 +176,8 @@ const CheckoutSection = () => {
                             router.push(`/detail-order/${result.order_id}`)
                         })
                     alert("not payment!");
-                    // router.push(`/detail-order/${orderId}`)
-                    // alert("you closed the popup without finishing the payment");
+                    router.push(`/detail-order/${orderId}`)
+                    alert("you closed the popup without finishing the payment");
                 },
 
             })
@@ -190,6 +202,8 @@ const CheckoutSection = () => {
             document.body.removeChild(scriptTag)
         }
     }, []);
+
+
 
     return (
         <div className='border-t-2 border-t-gray-400 '>
