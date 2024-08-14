@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import SeeAllButton from '../button/SeeAllButton'
 import ProductGrid from '../ProductGrid'
 import axios from 'axios'
-import NotFoundText from '../NotFoundText'
+
 
 
 const PopularProductSection = () => {
@@ -26,9 +26,7 @@ const PopularProductSection = () => {
 
     }, []);
 
-    if (!products) {
-        return <NotFoundText>Product Not Found </NotFoundText>
-    }
+
 
     return (
         <div className='py-10'>

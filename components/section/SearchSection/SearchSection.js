@@ -51,7 +51,7 @@ const SearchSection = () => {
                 }}
             >
                 <DialogBody className='h-[20rem] overflow-scroll'>
-                    <div className='flex justify-between max-w-4xl'>
+                    <div className='flex justify-between max-w-5xl'>
                         <div className='flex items-center text-gray-500 '>
 
                             <input

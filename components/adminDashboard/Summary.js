@@ -23,13 +23,20 @@ const Summary = () => {
 
     console.log(data)
 
+    const rupiah = (number) => {
+        return new Intl.NumberFormat("id-ID", {
+            style: "currency",
+            currency: "IDR"
+        }).format(number);
+    }
+
     return (
-        <div className=' mx-auto max-w-2xl mt-10'>
+        <div className=' mx-auto max-w-2xl my-10'>
             <div className='flex justify-center'>Stats</div>
             <div className='grid grid-cols-2 gap-3 overflow-y-auto max-h-50vh'>
                 <div className='rounded-xl border p-4 flex flex-col items-center transition '>
                     <div className='text-xl md:text-4xl font-bold'>
-                        {stats.totalSale}
+                        {rupiah(stats.totalSale)}
                     </div>
                     <div>
                         Total Sale

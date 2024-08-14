@@ -7,17 +7,13 @@ const CategoryAll = () => {
 
 
     return (
-        <div className='border-t sm:mx-3 px-2 sm:py-10 py-5 '>
-            <div className='mx-auto max-w-5xl m'>
-                <h1 className='my-5 text-2xl font-black'>Sneaker type : </h1>
-
-                <CategoryGrid />
-
-
-
+        <div className='border-t sm:py-10 py-5 '>
+            <div className='flex justify-between items-center'>
+                <h1 className='text-2xl font-bold'>Sneaker type: </h1>
             </div>
-
-
+            <div className='pt-16'>
+                <CategoryGrid />
+            </div>
         </div>
     )
 }
