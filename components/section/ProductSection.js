@@ -4,7 +4,7 @@ import React, { useContext, useState } from 'react'
 import { IoIosAddCircle } from "react-icons/io";
 import { toast } from 'react-toastify';
 import { DEFAULT_SIZES } from '@/constants';
-
+import { CldImage } from 'next-cloudinary';
 
 
 const ProductSection = ({ product }) => {
@@ -60,35 +60,43 @@ const ProductSection = ({ product }) => {
 
     return (
         <div className='py-10 border-t-2 border-t-gray-400'>
-            <div className='flex lg:flex-row  flex-col justify-center '>
-                <div className=' flex-1 justify-center items-center'>
-                    <Image src={product.image} alt={product.id} width={350} height={350} />
+            <div className='mx-auto max-w-7xl '>
+                <div className='flex lg:flex-row  flex-col justify-center '>
+                    <div className=' flex-1 justify-center items-center'>
+                        <CldImage
+                            width="600"
+                            height="600"
+                            src={product.image}
+                        />
 
-                </div>
-                <div className='flex-1'>
-                    <h1 className='text-4xl font-bold mb-5'>{product.name}</h1>
-                    <h2 className='text-2xl font-bold text-red-700 mb-8'>{currencyFormat(product.price)}</h2>
-                    <p className='text-lg font-bold text-gray-600'>Select size :</p>
-                    <div className='flex flex-wrap gap-2 pt-2 pb-5  '>
-                        {DEFAULT_SIZES.map((currSize, idx) => (
-                            <div onClick={() => (!soldOut) && setSize(currSize)} className={`h-10 w-32 text-center  border-2 border-gray-400 hover:border-black py-2 px-5 ${size === currSize && 'bg-gray-700 text-white hover:text-white'} ${product.sizes ? !product.sizes.includes(currSize) ? 'cursor-not-allowed bg-gray-300 text-gray-500 hover:border-zinc-300 hover:text-zinc-500' : 'cursor-pointer' : ""}`}>US M {currSize}</div>
-
-                        ))
-                        }
                     </div>
-                    <button onClick={addToCartHandler} disabled={!size} className={`${!size ? ' cursor-not-allowed' : 'cursor-pointer'} my-5 flex items-center justify-center px-6 py-3 text-[14px] rounded-md text-white bg-gray-800 border border-gray-400 hover:bg-gray-900`}>
-                        <IoIosAddCircle className="text-xl mr-1" />
-                        Add to Cart
-                    </button>
+                    <div className='flex-1'>
+                        <h1 className='text-4xl font-bold mb-5'>{product.name}</h1>
+                        <h2 className='text-2xl font-bold text-red-700 mb-8'>{currencyFormat(product.price)}</h2>
+                        <p className='text-lg font-bold text-gray-600'>Select size :</p>
+                        <div className='flex flex-wrap gap-2 pt-2 pb-5  '>
+                            {DEFAULT_SIZES.map((currSize, idx) => (
+                                <div onClick={() => (!soldOut) && setSize(currSize)} className={`h-10 w-32 text-center  border-2 border-gray-400 hover:border-black py-2 px-5 ${size === currSize && 'bg-gray-700 text-white hover:text-white'} ${product.sizes ? !product.sizes.includes(currSize) ? 'cursor-not-allowed bg-gray-300 text-gray-500 hover:border-zinc-300 hover:text-zinc-500' : 'cursor-pointer' : ""}`}>US M {currSize}</div>
+
+                            ))
+                            }
+                        </div>
+                        <button onClick={addToCartHandler} disabled={!size} className={`${!size ? ' cursor-not-allowed' : 'cursor-pointer'} my-5 flex items-center justify-center px-6 py-3 text-[14px] rounded-md text-white bg-gray-800 border border-gray-400 hover:bg-gray-900`}>
+                            <IoIosAddCircle className="text-xl mr-1" />
+                            Add to Cart
+                        </button>
+                    </div>
                 </div>
-            </div>
-            <div className='border-t '>
-                <div className='mt-5'>
-                    <h1 className='font-bold text-2xl'>About The Sneakers:</h1>
-                    <p className='text-gray-700'>{product.description}</p>
+                <div className='border-t '>
+                    <div className='mt-5'>
+                        <h1 className='font-bold text-2xl'>About The Sneakers:</h1>
+                        <p className='text-gray-700'>{product.description}</p>
+                    </div>
+
                 </div>
 
             </div>
+
         </div >
     )
 }

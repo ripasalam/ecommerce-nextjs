@@ -1,3 +1,4 @@
+import { CldImage } from 'next-cloudinary'
 import Image from 'next/image'
 import React from 'react'
 import { toast } from 'react-toastify'
@@ -34,7 +35,12 @@ const CheckoutCard = ({ item }) => {
         <div className='p-3 border-2 border-gray-400 mb-2'>
             <div className='grid sm:grid-cols-4 grid-cols-3'>
                 <div className=' col-span-1'>
-                    <Image src={item.image} alt={item.id} width={200} height={200} className='h-auto w-auto' />
+                    <CldImage
+                        width="600"
+                        height="600"
+                        src={item.image}
+                    />
+                    {/* <Image src={item.image} alt={item.id} width={200} height={200} className='h-auto w-auto' /> */}
                 </div>
                 <div className='flex flex-col sm:col-span-3 col-span-2 ml-5'>
                     <h1 className='text-2xl font-bold text-gray-800'>{item.name}</h1>

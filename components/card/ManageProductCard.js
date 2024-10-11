@@ -7,6 +7,7 @@ import Modal from 'react-modal';
 import axios from 'axios';
 import { toast } from 'react-toastify';
 import Cookies from 'js-cookie'
+import { CldImage } from 'next-cloudinary';
 
 Modal.setAppElement('#__next');
 
@@ -74,17 +75,23 @@ const ManageProductCard = ({ product }) => {
             });
     }
 
+    console.log(product)
 
     return (
         <div className='grid md:grid-cols-4 gap-3 m-4  p-2 border border-gray-300 bg-gradient-to-tl bg-gray-100 rounded-md'>
-            <div className='h-24 flex  justify-center items-center mb-5'>
-                <Image
+            <div className='h-24 w-48 flex  justify-center items-center mb-5'>
+                {/* <Image
                     src={product.image}
                     width={0}
                     height={0}
                     sizes="50vw"
                     className='h-auto w-auto object-cover mb-5'
                     alt='product'
+                /> */}
+                <CldImage
+                    width="200"
+                    height="200"
+                    src={product.image}
                 />
             </div>
             <div className='flex flex-col justify-center '>

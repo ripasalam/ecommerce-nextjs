@@ -1,7 +1,7 @@
 import React from 'react'
 import Image from 'next/image'
 import { useRouter } from 'next/router'
-
+import { CldImage } from 'next-cloudinary';
 
 
 
@@ -21,14 +21,12 @@ const ProductCard = ({ product }) => {
         )
     }
     return (
-        <div className='flex flex-col p-2 border border-gray-300 bg-gradient-to-tl bg-gray-100 rounded-md'>
-            <div className='h-32 flex flex-row  justify-center items-center mb-5'>
-                <Image
+        <div className='w-full   flex flex-col p-2 border border-gray-300 bg-gradient-to-tl bg-gray-100 rounded-md'>
+            <div className='h-32  flex flex-row  justify-center items-center mb-5'>
+                <CldImage
+                    width="200"
+                    height="300"
                     src={product.image}
-                    width={400}
-                    height={400}
-                    className='h-auto w-auto'
-                    alt='product'
                 />
             </div>
             <div className='grow' >

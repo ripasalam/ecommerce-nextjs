@@ -1,3 +1,4 @@
+import { CldImage } from 'next-cloudinary'
 import Image from 'next/image'
 import React from 'react'
 
@@ -19,7 +20,12 @@ const DetailProductOrder = ({ product, orderItem }) => {
             <div className='grid sm:grid-cols-4 grid-cols-3'>
 
                 <div className=' col-start-1 col-span-1'>
-                    <Image src={product.image} alt={product.id} width={200} height={200} className='h-auto w-auto' />
+                    <CldImage
+                        width="600"
+                        height="600"
+                        src={product.image}
+                    />
+                    {/* <Image src={product.image} alt={product.id} width={200} height={200} className='h-auto w-auto' /> */}
                 </div>
                 <div className='flex flex-col col-start-2 col-span-2 ml-2'>
                     <div className='grow'>

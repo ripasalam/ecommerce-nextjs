@@ -41,11 +41,14 @@ const ProductSuggestionSection = ({ product }) => {
 
     return (
         <div className='border-t my-5'>
-            <div className='my-5 flex justify-between items-center'>
-                <h1 className='font-bold text-2xl'>More {category.name}: </h1>
-                <SeeAllButton />
+            <div className=' mx-auto max-w-7xl'>
+                <div className='my-5 flex justify-between items-center'>
+                    <h1 className='font-bold text-2xl'>More {category.name}: </h1>
+                    <SeeAllButton />
+                </div>
+                <ProductGrid products={productCategory} />
             </div>
-            <ProductGrid products={productCategory} />
+
         </div>
     )
 }

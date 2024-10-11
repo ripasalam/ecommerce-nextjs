@@ -7,6 +7,7 @@ import { useRouter } from 'next/router'
 import SeeAllButton from '../button/SeeAllButton'
 import { usePathname } from 'next/navigation'
 import { toast } from 'react-toastify'
+import { CldImage } from 'next-cloudinary';
 
 const CartMenu = () => {
 
@@ -73,12 +74,10 @@ const CartMenu = () => {
                                 className="grid grid-cols-5 gap-2 border-b border-zinc-300 pb-3 mb-2 last:border-0 last:pb-0 last:mb-0"
                             >
                                 <div className="col-span-2">
-                                    <Image
+                                    <CldImage
+                                        width="600"
+                                        height="600"
                                         src={item.image}
-                                        alt={item.id + idx}
-                                        width={200}
-                                        height={200}
-                                        className="w-auto h-auto"
                                     />
                                 </div>
                                 <div className="col-span-3 flex flex-col justify-between p-1">

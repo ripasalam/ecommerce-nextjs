@@ -55,7 +55,7 @@ async function handlerNotifPayment(req, res) {
 
                     })
 
-                    console.log(transactionOrder)
+
 
                     if (transactionOrder) {
                         // const hash = SHA512(`${data.transaction_id}${data.status_code}${data.gross_amount}${process.env.MIDTRANS_SERVER_KEY}`)

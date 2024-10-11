@@ -57,7 +57,7 @@ const Header = ({ isAdd, isEdit, setIsAdd, setIsEdit }) => {
 
 
     return (
-        <div className='flex flex-col bg-white py-5 top-0 sticky z-50'>
+        <div className='flex flex-col bg-white py-5 top-0 sticky z-50 border-b mb-10 w-full'>
             <div className='w-full'>
                 <div className='flex justify-between items-center justify-center'>
                     <div className='flex items-center'>

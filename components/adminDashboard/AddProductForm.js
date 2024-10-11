@@ -119,9 +119,9 @@ const AddProductForm = () => {
 
 
     return (
-        <div className='mx-auto items-center my-5 max-w-2xl shadow-lg  '>
-            <div className='px-6 py-3 mb-3'>
-                <div className='text-center font-bold text-xl'>
+        <div className='mx-auto items-center mt-10 max-w-2xl shadow-2xl mb-10  '>
+            <div className='px-6 py-3 mb-3 mt-5'>
+                <div className='text-center font-bold text-xl mb-5'>
                     <h1>Add Product</h1>
                 </div>
                 <div>
@@ -139,7 +139,7 @@ const AddProductForm = () => {
 
                                 <input type="number" name='price' value={input.price} onChange={handleChangeInput} className="block border border-grey-light w-full p-2 rounded " placeholder="Price" />
                             </div>
-                            <div className="w-full  px-3 mb-6 ">
+                            <div className="w-full grid grid-cols-6 gap-2  px-3 mb-6 ">
                                 {DEFAULT_SIZES.map((currSize) => (
                                     <div
                                         onClick={() => handleSize(currSize)}
